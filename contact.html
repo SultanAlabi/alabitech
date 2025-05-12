@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alabi Tech Services</title>
+    <link rel="stylesheet" href="style.css" >
+</head>
+<body>
+    <header>
+        <h1>Alabi Tech Services.</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="team.html">Team</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+       <h2>Contact Us</h2>
+       <p>Email: contact@alabitech.com</p>
+       <p>Phone: +234-703-75-3690</p>
+       <p>Address: No 00 Ministry of Physcial Planning Alausa-Ikeja Lagos</p>
+
+       <form id="contact-form">
+        <label for="name">Name:</label><br >
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="message">Message:</label><br>
+        <textarea name="message" id="message" rows="5" required></textarea><br>
+
+        <button type="submit">Send Message</button>
+       </form>
+
+       <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyDpmdBUPwY0XfLDEmNiufKv-ZMbZcNjRnU",
+          authDomain: "alabitech-dbb06.firebaseapp.com",
+          projectId: "alabitech-dbb06",
+          storageBucket: "alabitech-dbb06.firebasestorage.app",
+          messagingSenderId: "854255651722",
+          appId: "1:854255651722:web:7b9e82ee4702f8afd5d673"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        // Form Handling
+        const contactForm = document.querySelector("#contact-form");
+
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    
+    const name = contactForm.name.value;
+    const email = contactForm.email.value;
+    const message = contactForm.message.value;
+
+    db.collection("messages").add({
+      name: name,
+      email: email,
+      message: message,
+      timestamp: new Date()
+    })
+    .then(() => {
+      alert("Message sent successfully!");
+      contactForm.reset();
+    })
+    .catch((error) => {
+      alert("Error sending message: " + error.message);
+    });
+  });
+
+      </script>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Alabi Tech Services. All rights reserved.    </p>
+    </footer>
+
+   
+</body>
+</html>
